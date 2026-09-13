@@ -1,0 +1,21 @@
+generated: '2026-09-12'
+method: searched
+source: >-
+  https://career.wingeat.com/ and https://www.wingeat.com/ reviewed in full on 2026-09-12,
+  including the sitemap of every non-product page.
+plan_count: 0
+plans: []
+note: >-
+  Agreable publishes no API plans, no developer tiers and no usage-based pricing, because it
+  publishes no API. The company's pricing surface is retail: individual grocery SKUs on the
+  Wingeat storefront, sold to consumers. A wholesale B2B channel is marketed at
+  https://www.wingeat.com/biz/auth/intro (HTTP 200) but it gates its pricing behind a business
+  verification form and exposes no published rate card. An honest zero, recorded rather than
+  omitted.
+evidence:
+- url: https://www.wingeat.com/biz/auth/intro
+  status: 200
+  detail: B2B channel landing page; business verification required, no published pricing.
+- url: https://career.wingeat.com/
+  status: 200
+  detail: Corporate site; careers and brand content only, no pricing or developer page.

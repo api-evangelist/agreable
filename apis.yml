@@ -1,17 +1,88 @@
 aid: agreable
 name: Agreable
-description: 'Agreable is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Agreable (아그레아블) is a South Korean direct-to-consumer brand-commerce company founded by
+  Lim Seung-jin (임승진, "Jason Im") out of a reading-club community of the same name. It has run
+  the frozen convenience-food platform Wingeat (윙잇, wingeat.com) since 2015, and in March 2022
+  renamed itself after that brand — the operating legal entity is now 주식회사 윙잇 (Wing Eat,
+  Inc.) in Guro-gu, Seoul, and agreable.com and agreable.co.kr both redirect to career.wingeat.com.
+  The company designs, contract-manufactures and fulfils its own private-label food brands —
+  윙잇Dining, 윙잇Made, 고른, 페이보잇, 랠리 and 방아당 — across more than 200 products. It is a
+  consumer packaged-goods and retail operator, not a software vendor: it builds its storefront,
+  ERP and fulfilment systems in house on private hosts and publishes no developer portal, no
+  public API, no SDK, no machine-readable specification and no agent surface of any kind. Its
+  GitHub organization, wingeat-inc, carries zero public repositories.
+image: https://image.wingeat.com/og/images/0d8f505b-654a-4b48-9a68-31866dee9148.png
 url: https://raw.githubusercontent.com/api-evangelist/agreable/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-12'
 modified: '2026-09-12'
 tags:
 - Company
+- E-Commerce
+- Retail
+- Food and Beverage
+- Convenience Food
+- Consumer Packaged Goods
+- Direct to Consumer
+- Private Label
+- South Korea
+x-identity:
+  current_legal_entity: 주식회사 윙잇 (Wing Eat, Inc.)
+  former_name: 아그레아블 (Agreable)
+  renamed: '2022-03'
+  rename_evidence: http://www.e2news.com/news/articleView.html?idxno=240399
+  rename_note: >-
+    Reported 2022-03-17. The storefront's own embedded page data declares companyKorName
+    "주식회사 윙잇" and companyEngName "Wing Eat, Inc."; agreable.com and agreable.co.kr both
+    meta-refresh to career.wingeat.com. The catalog slug stays `agreable` because that is the
+    name the company was harvested under and the name its legacy domains still carry.
+  ceo: 임승진 (Lim Seung-jin / "Jason Im")
+  headquarters: 서울시 구로구 디지털로 306 대륭포스트타워2차 712호, Seoul, South Korea
+  github_organization: https://github.com/wingeat-inc
+  divested_brand:
+    name: 반려소반 (Petsoban)
+    domains: petsoban.com, petsoban.co.kr
+    now_operated_by: 주식회사 브리지테일 (Breezytail Co., Ltd.)
+    evidence: https://petsoban.co.kr/shopinfo/company.html
+    note: >-
+      NOT ATTRIBUTED TO AGREABLE. That storefront's statutory Korean business block names
+      주식회사 브리지테일, business registration 160-81-00733. It serves a live Cafe24 tenant
+      agent-commerce surface — OIDC, RFC 8414 and RFC 9728 discovery documents, an llms.txt, and a
+      reachable MCP server at petsoban.cafe24api.com/api/mcp advertising UCP-namespaced
+      dev.ucp.shopping scopes. Under STEP 0c that surface belongs to Breezytail and was
+      deliberately NOT saved into this repo. Several third-party startup databases still list the
+      brand under Agreable; the live storefront does not.
+  retired_brand:
+    name: 커먼톤 (Commontone)
+    domain: commontone.co.kr
+    status: >-
+      No DNS A record resolves and the host does not answer on 443 as of 2026-09-12.
+x-enrichment:
+  date: '2026-09-12'
+  status: minimal
+  artifacts_added: 7
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Agreable (now 주식회사 윙잇 / Wing Eat, Inc.) is a direct-to-consumer frozen-food retailer whose
+    software is entirely internal — api.wingeat.com answers "Cannot GET" on every path, erp.wingeat.com
+    is a private Vercel SPA, and the wingeat-inc GitHub organization has zero public repositories, so
+    there is no developer portal, no specification and no agent surface to profile.
+  evidence:
+  - url: https://api.wingeat.com/openapi.json
+    status: 404
+  - url: https://www.wingeat.com/llms.txt
+    status: 404
+  - url: https://career.wingeat.com/.well-known/agent-card.json
+    status: 404
+  - url: https://github.com/wingeat-inc
+    status: 200
+  checked: '2026-09-12'
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +91,28 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://equityzen.com/company/agreable
+  url: https://career.wingeat.com/
+- type: About
+  url: https://career.wingeat.com/about
+- type: GitHubOrganization
+  url: https://github.com/wingeat-inc
+- type: Support
+  url: https://www.wingeat.com/cs-center
+- type: HelpCenter
+  url: https://www.wingeat.com/cs-center/faq
+- type: TermsOfService
+  url: https://www.wingeat.com/term
+- type: PrivacyPolicy
+  url: https://www.wingeat.com/privacy
+- type: DomainSecurity
+  url: security/agreable-domain-security.yml
+- type: Conformance
+  url: conformance/agreable-conformance.yml
+- type: Lifecycle
+  url: lifecycle/agreable-lifecycle.yml
+- type: Packages
+  url: packages/agreable-packages.yml
+- type: Plans
+  url: plans/agreable-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/agreable-rate-limits.yml

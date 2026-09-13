@@ -1,0 +1,119 @@
+generated: '2026-09-12'
+method: probed
+source: >-
+  Contract-discovery probes across every Agreable-controlled host on 2026-09-12: career.wingeat.com,
+  www.wingeat.com, company.wingeat.com, api.wingeat.com, erp.wingeat.com, abr.wingeat.com,
+  agreable.co.kr and agreable.com.
+note: >-
+  Every entry is asserted from a request actually made, not from a marketing claim. This file is
+  almost entirely negative, and that is the finding: Agreable publishes no contract of any kind,
+  so there is nothing to conform. It is recorded rather than omitted so a later run can see that
+  the surfaces were probed and were genuinely absent, not merely unchecked. No Compliance pointer
+  is emitted — no certification or compliance programme is published anywhere.
+conformance:
+- id: openapi
+  conforms: false
+  detail: >-
+    No OpenAPI or Swagger document is served on any host. /openapi.json, /openapi.yaml,
+    /swagger.json, /v1/openapi.json, /v2/api-docs, /v3/api-docs, /swagger-ui.html, /api-docs,
+    /docs and /redoc were each probed on the storefront, the corporate site and all three
+    private application hosts. api.wingeat.com answers "Cannot GET" on every one;
+    erp.wingeat.com answers 200 with a Vercel SPA shell on every one, which is not a document.
+  evidence: https://api.wingeat.com/openapi.json
+- id: graphql
+  conforms: false
+  detail: /graphql returns 404 on api.wingeat.com and abr.wingeat.com; no introspection surface exists.
+  evidence: https://api.wingeat.com/graphql
+- id: asyncapi
+  conforms: false
+  detail: No event, streaming, or webhook surface is published or documented.
+  evidence: https://www.wingeat.com/.well-known/api-catalog
+- id: grpc
+  conforms: false
+  detail: No .proto is published on the wingeat-inc GitHub organization, which has zero public repositories.
+  evidence: https://github.com/wingeat-inc
+- id: wsdl
+  conforms: false
+  detail: No SOAP surface; ?wsdl and ?singleWsdl return the standard 404 on every host.
+  evidence: https://api.wingeat.com/?wsdl
+- id: mcp
+  conforms: false
+  detail: >-
+    No Model Context Protocol endpoint is advertised or reachable on any Agreable host. No
+    /.well-known/oauth-protected-resource document exists to name one.
+  evidence: https://www.wingeat.com/.well-known/oauth-protected-resource
+- id: a2a
+  conforms: false
+  detail: >-
+    /.well-known/agent-card.json and the legacy /.well-known/agent.json both 404 on every host.
+    The two hosts that answer 200 (company.wingeat.com, erp.wingeat.com) are a redirect catch-all
+    and an SPA shell respectively, confirmed against an invented negative-control path.
+  evidence: https://career.wingeat.com/.well-known/agent-card.json
+- id: oauth2
+  conforms: false
+  detail: >-
+    No OAuth 2.0 authorization-server metadata is published. The storefront runs its own
+    session-cookie login for shoppers; no third-party authorization surface is offered.
+  evidence: https://www.wingeat.com/.well-known/oauth-authorization-server
+- id: oidc
+  conforms: false
+  detail: /.well-known/openid-configuration returns 404 on every Agreable host.
+  evidence: https://career.wingeat.com/.well-known/openid-configuration
+- id: rfc8414
+  conforms: false
+  evidence: https://www.wingeat.com/.well-known/oauth-authorization-server
+- id: rfc9728
+  conforms: false
+  detail: >-
+    Not applicable — there is no protected API resource to describe. Probed and 404 on both the
+    storefront and the corporate site.
+  evidence: https://www.wingeat.com/.well-known/oauth-protected-resource
+- id: rfc9116
+  conforms: false
+  detail: No security.txt is served at /.well-known/security.txt on any host. This is the most
+    readily fixable gap in the profile.
+  evidence: https://career.wingeat.com/.well-known/security.txt
+- id: rfc9457
+  conforms: false
+  detail: No error contract is published; nothing returns application/problem+json.
+  evidence: https://api.wingeat.com/
+- id: llmstxt
+  conforms: false
+  detail: /llms.txt returns 404 on the corporate site and on the storefront.
+  evidence: https://www.wingeat.com/llms.txt
+- id: sitemaps
+  conforms: true
+  detail: >-
+    Both the corporate site and the storefront publish a valid sitemaps.org sitemap and a
+    robots.txt that references it. This is retail SEO hygiene rather than an API artifact, but it
+    is the one machine-readable convention the company does implement correctly.
+  evidence: https://www.wingeat.com/sitemap.xml
+- id: schema-org
+  conforms: true
+  detail: >-
+    The storefront embeds JSON-LD @type Organization with name, url and sameAs links to its
+    Instagram and App Store listings. Structured data for crawlers, not an API contract.
+  evidence: https://www.wingeat.com/term
+domain_standards:
+- id: ucp
+  name: Universal Commerce Protocol
+  conforms: false
+  detail: >-
+    No UCP surface. /.well-known/ucp.json 404s on every Agreable host and no dev.ucp.* scope
+    namespace appears anywhere. Worth noting for a future run: Korea's Cafe24 platform provisions
+    a UCP-scoped agentic-commerce endpoint for its merchant tenants, and Agreable's divested
+    반려소반 brand has one — but Agreable's own Wingeat storefront is custom-built, not Cafe24,
+    so it receives no such surface.
+  evidence: https://www.wingeat.com/.well-known/ucp.json
+- id: acp
+  name: Agentic Commerce Protocol
+  conforms: false
+  evidence: https://www.wingeat.com/.well-known/acp.json
+  detail: 404 on every host probed.
+certifications: []
+compliance_programs: []
+compliance_note: >-
+  No trust centre, SOC 2, ISO 27001, PCI DSS or Korean ISMS-P certification page was found on any
+  Agreable host. The storefront publishes the statutory Korean e-commerce disclosures (terms of
+  service and a privacy policy under the Personal Information Protection Act), but statutory
+  filings are not a published compliance programme, so no Compliance pointer is claimed.

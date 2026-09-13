@@ -1,0 +1,73 @@
+generated: '2026-09-12'
+method: probed
+source: Probe of every Agreable-controlled host, 2026-09-12.
+note: >-
+  Agreable publishes no versioning policy, no deprecation policy, no SLA, no developer status page
+  and no API changelog, because it publishes no API. This artifact records those absences with
+  evidence so the gap is legible rather than merely blank. No StatusPage and no Deprecation
+  pointer is emitted in apis.yml — the artifact documents their absence, and a pointer would
+  assert a presence.
+status_page:
+  published: false
+  url: null
+  evidence:
+  - url: https://www.wingeat.com/status
+    status: 404
+  - url: https://career.wingeat.com/status
+    status: 404
+  note: >-
+    Service interruptions are communicated through the storefront's 공지사항 notice board rather
+    than a status page.
+deprecation_policy:
+  published: false
+  sunset_header: not observed
+  deprecation_header: not observed
+  rfc8594: false
+changelog:
+  published: false
+  detail: >-
+    https://www.wingeat.com/cs-center/notice (HTTP 200) is a dated retail announcements board
+    carrying shipping notices, promotions and holiday schedules. It is not an API or product
+    changelog and is not registered as a ChangeLog pointer.
+  evidence:
+  - url: https://www.wingeat.com/cs-center/notice
+    status: 200
+sla:
+  published: false
+versioning:
+  scheme: none published
+  policy: none published
+  detail: >-
+    The private backend at api.wingeat.com exposes no version in any reachable path, and there is
+    no public contract to version.
+support:
+  channel: retail customer service centre
+  url: https://www.wingeat.com/cs-center
+  faq: https://www.wingeat.com/cs-center/faq
+  note: >-
+    Consumer support for shoppers. There is no developer support channel. The wingeat-inc GitHub
+    organization lists dev@wingeat.com, which is the only engineering-facing address the company
+    publishes anywhere, and it is not advertised as a support channel.
+company_lifecycle:
+  founded: '2015'
+  renamed:
+    date: '2022-03'
+    from: 아그레아블 (Agreable)
+    to: 주식회사 윙잇 (Wing Eat, Inc.)
+    evidence: http://www.e2news.com/news/articleView.html?idxno=240399
+  brand_divestiture:
+    brand: 반려소반 (Petsoban)
+    now_operated_by: 주식회사 브리지테일 (Breezytail Co., Ltd.)
+    evidence: https://petsoban.co.kr/shopinfo/company.html
+  brand_retirement:
+    brand: 커먼톤 (Commontone)
+    domain: commontone.co.kr
+    status: >-
+      No DNS A record resolves and the host does not answer on 443 as of 2026-09-12. The brand
+      appears in company descriptions and recruiting posts but its storefront is gone.
+deprecated_operations: []
+push_to_provider: >-
+  Nothing here is an API-lifecycle failing, because there is no API. If Agreable ever exposes one —
+  the most likely candidate is a B2B ordering surface for the wholesale business it markets at
+  https://www.wingeat.com/biz/auth/intro — the first three artifacts worth publishing are a
+  security.txt, a versioning policy, and a dated changelog.

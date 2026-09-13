@@ -1,0 +1,25 @@
+generated: '2026-09-12'
+method: searched
+source: >-
+  Documentation search across every Agreable web property plus response-header inspection of
+  https://www.wingeat.com/ and https://api.wingeat.com/ on 2026-09-12.
+limit_count: 0
+rate_limits: []
+headers:
+  published: false
+  observed: []
+  detail: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header appeared on any response from any host.
+    No 429 was provoked; the catalog does not load-test a live commercial surface.
+exhaustion_status_code: not documented
+note: >-
+  Agreable publishes no rate limits because it publishes no API. api.wingeat.com is a private
+  storefront backend with no public contract, no documentation, and no advertised quota. An honest
+  zero rather than an omitted file.
+evidence:
+- url: https://api.wingeat.com/
+  status: 404
+  detail: Express application; responds "Cannot GET /". No headers describing quota or throttling.
+- url: https://www.wingeat.com/
+  status: 200
+  detail: Storefront; no rate-limit headers on the response.

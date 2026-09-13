@@ -1,0 +1,38 @@
+generated: '2026-09-12'
+method: searched
+source: >-
+  Searched registry.npmjs.org (full-text search), pypi.org, the GitHub API for organizations and
+  repositories, and every Agreable web property, on 2026-09-12.
+package_count: 0
+official_count: 0
+packages: []
+note: >-
+  Agreable ships no client libraries, no SDK and no CLI, which is the expected result for a
+  direct-to-consumer food retailer with no developer program. No SDKs pointer is emitted.
+registries_searched:
+- registry: npm
+  endpoint: https://registry.npmjs.org/-/v1/search
+  queries: [wingeat, agreable, petsoban, commontone]
+  results: 0
+- registry: pypi
+  endpoint: https://pypi.org/pypi/<name>/json
+  queries: [wingeat, agreable, petsoban]
+  results: 0
+  detail: All three returned HTTP 404.
+- registry: github
+  endpoint: https://api.github.com
+  detail: >-
+    The first-party organization is wingeat-inc — name "Wing Eat", description
+    "윙잇, 세상에 없던 간편 한 끼" matching the storefront tagline verbatim, email dev@wingeat.com,
+    location Seoul, blog company.wingeat.com, last updated 2026-08-26. It has ZERO public
+    repositories, so there is no published source, SDK or specification to harvest.
+  results: 0
+unconfirmed:
+- name: github.com/AGREABLE
+  detail: >-
+    A GitHub organization literally named AGREABLE exists, created 2018-01-17, holding three
+    repositories (CRAWL, KIMCHICOIN, identifyjs) all last pushed in 2018. It publishes no name,
+    email, website or description, and none of its repositories relates to food commerce. It is
+    NOT claimed as this company's organization — the evidence does not support the link, and
+    wingeat-inc does.
+  status: not attributed

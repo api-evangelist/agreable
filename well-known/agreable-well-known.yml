@@ -1,0 +1,305 @@
+generated: '2026-09-12'
+method: probed
+source: >-
+  Direct HTTP probe of the named /.well-known/ path list against every host this record knows:
+  the corporate site, its two redirecting legacy domains, the Wingeat storefront, and the three
+  private application hosts the storefront's own markup names.
+note: >-
+  NOTHING IS SERVED. Fifteen named paths were probed on each of six hosts and not one returned a
+  document. Every row below is a recorded absence, which is valid data — and because no path
+  returned a real document, NO WellKnown and NO SecurityTxt pointer is emitted in apis.yml, per
+  the pointer rule. Two hosts require the soft-200 caveat: company.wingeat.com 301s every path,
+  real or invented, to the career.wingeat.com homepage, and erp.wingeat.com is a Vercel SPA that
+  answers 200 with the same application shell for every path including the negative control.
+  Those 200s are catch-alls, not documents, and are counted as misses.
+path_echo_control: passed
+hit_count: 0
+hosts:
+- host: https://career.wingeat.com
+  operator: agreable
+  role: corporate site (Framer-hosted); agreable.com and agreable.co.kr both redirect here
+  hit_count: 0
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 200
+    note: >-
+      Served, but robots.txt is not one of the scored discovery documents. Content is
+      "User-agent: * / Allow: / / Sitemap: https://career.wingeat.com/sitemap.xml".
+  - path: /sitemap.xml
+    status: 200
+    note: 13 URLs, all marketing and careers pages. No API or developer page is listed.
+  - path: /.well-known/agreable-negative-control-4c81de2f.json
+    status: 404
+    note: negative control — correctly absent
+- host: https://www.wingeat.com
+  operator: agreable
+  role: Wingeat direct-to-consumer storefront (React SPA)
+  hit_count: 0
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 200
+    note: >-
+      Allows all, disallows /mypage, /order/, /cart/, /recent-items and the /b2b and /biz
+      branches. Nothing we probed is disallowed, so no robots wall was hit.
+  - path: /sitemap.xml
+    status: 200
+    note: >-
+      93KB of product, collection and campaign URLs. Read in full; it names no developer,
+      API, docs or partner-integration page.
+  - path: /.well-known/agreable-negative-control-4c81de2f.json
+    status: 404
+    note: negative control — correctly absent
+- host: https://company.wingeat.com
+  operator: agreable
+  role: >-
+    Redirect alias named as the `blog` field of the wingeat-inc GitHub organization. Every path
+    301s to the career.wingeat.com homepage.
+  hit_count: 0
+  soft_404_control:
+    path: /.well-known/agreable-negative-control-4c81de2f.json
+    status: 200
+    bytes: 364512
+    verdict: >-
+      Redirect catch-all. The invented control path returns the same 364KB career homepage as
+      every real path. No document is readable here; all rows are misses.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: redirect to career homepage, not a document — miss
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: redirect to career homepage, not a document — miss
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    note: redirect to career homepage, not a document — miss
+  - path: /.well-known/api-catalog
+    status: 200
+    note: redirect to career homepage, not a document — miss
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: redirect to career homepage, not a document — miss
+  - path: /.well-known/agent.json
+    status: 200
+    note: redirect to career homepage, not a document — miss
+  - path: /llms.txt
+    status: 200
+    note: redirect to career homepage, not a document — miss
+  - path: /openapi.json
+    status: 200
+    note: redirect to career homepage, not a document — miss
+- host: https://api.wingeat.com
+  operator: agreable
+  role: >-
+    Private storefront backend. An Express application that answers "Cannot GET <path>" on every
+    path including the root. Undocumented and unadvertised; probed only for discovery paths and
+    not enumerated further.
+  hit_count: 0
+  path_echo_control: passed
+  documents:
+  - path: /
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /v1/openapi.json
+    status: 404
+  - path: /v2/api-docs
+    status: 404
+  - path: /v3/api-docs
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /docs
+    status: 404
+  - path: /graphql
+    status: 404
+  - path: /health
+    status: 404
+- host: https://erp.wingeat.com
+  operator: agreable
+  role: Internal ERP application, deployed on Vercel.
+  hit_count: 0
+  soft_404_control:
+    path: /health
+    status: 200
+    verdict: >-
+      SPA catch-all. Every path returns the same client-rendered application shell carrying a
+      Vercel deployment id (data-dpl-id). The 200s below are the shell, not documents — this is
+      the dominant false positive on well-known probes and is recorded as a miss set.
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: SPA shell, not a document — miss
+  - path: /openapi.json
+    status: 200
+    note: SPA shell, not a document — miss
+  - path: /swagger.json
+    status: 200
+    note: SPA shell, not a document — miss
+  - path: /v3/api-docs
+    status: 200
+    note: SPA shell, not a document — miss
+  - path: /v2/api-docs
+    status: 200
+    note: SPA shell, not a document — miss
+  - path: /api-docs
+    status: 200
+    note: SPA shell, not a document — miss
+  - path: /docs
+    status: 200
+    note: SPA shell, not a document — miss
+  - path: /graphql
+    status: 200
+    note: SPA shell, not a document — miss
+- host: https://abr.wingeat.com
+  operator: agreable
+  role: Internal React application; returns a plain text 404 body on unknown paths.
+  hit_count: 0
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /swagger-ui.html
+    status: 404
+  - path: /v3/api-docs
+    status: 404
+  - path: /v2/api-docs
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /docs
+    status: 404
+  - path: /graphql
+    status: 404
+  - path: /health
+    status: 404
+- host: https://agreable.co.kr
+  operator: agreable
+  role: >-
+    Legacy pre-rename domain. Serves a 200 HTML stub whose only content is a meta-refresh to
+    https://career.wingeat.com, on a certificate that does not match the hostname. The apex
+    agreable.com behaves identically. No /.well-known path is served from either.
+  hit_count: 0
+  tls_note: >-
+    TLS certificate subject does not match agreable.co.kr or agreable.com; both required
+    certificate verification to be disabled to read the redirect stub at all.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /robots.txt
+    status: 404
+hosts_excluded:
+- host: https://petsoban.com
+  reason: >-
+    EXCLUDED UNDER STEP 0c — NOT AGREABLE'S HOST. petsoban.com and petsoban.co.kr do serve real
+    documents (openid-configuration, oauth-authorization-server, oauth-protected-resource and an
+    llms.txt, all HTTP 200) and a live Cafe24 MCP server, but the storefront's statutory Korean
+    business block at https://petsoban.co.kr/shopinfo/company.html names 주식회사 브리지테일
+    (Breezytail Co., Ltd.), business registration 160-81-00733, as the operator. The 반려소반
+    brand was divested; crediting Agreable with Breezytail's agent surface would be a
+    misattribution. Recorded here so a future run does not re-discover and wrongly save it.
+push_to_provider: >-
+  The single cheapest discovery artifact Agreable could publish is an RFC 9116 security.txt on
+  career.wingeat.com and www.wingeat.com, naming a contact for vulnerability reports. It costs one
+  static file and is currently absent from every host the company operates.
